@@ -15,11 +15,7 @@ class UserController extends Controller
     {
         $this->userValidate=$validate;
     }
-
-    public function index(){
-        return 'guaosi';
-    }
-
+    
     public function signup(Request $request)
     {
         $rules=['user_account' => 'unique:info_users','password' => 'confirmed'];
