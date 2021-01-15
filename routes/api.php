@@ -19,10 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('Api')->prefix('v1')->group(function () {
-
-    Route::get('/index','UserController@index')->name('users.index');
-    Route::post('/signup','UserController@signup')->name('users.signup');
     Route::post('/login','UserController@login')->name('user.login');
-    Route::get('/info','UserController@info')->name('user.info');
-    Route::get('/logout','UserController@logout')->name('user.logout');
+
+    Route::middleware('api.refresh')->group(function (){
+        Route::post('/signup','UserController@signup')->name('users.signup');
+        Route::get('/info','UserController@info')->name('user.info');
+        Route::get('/logout','UserController@logout')->name('user.logout');
+    });
+
 });
